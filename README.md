@@ -1,1 +1,1 @@
-# Game-YuGiOh
+# Game YuGiOh
