@@ -17,10 +17,33 @@ const state = {
         button: getElementById('next-duel')
     },
 }
-
-// const players = {
-//     player1: 'player-cards'
-// }
+const pathImages = './src/assets/icons/'
+const cardData = [
+    {
+        id: 0,
+        name: 'Blue Eyes White Dragon',
+        type: "Paper",
+        img: `${pathImages}dragon.png`,
+        winfOf: [1],
+        loseOf: [2],
+    },
+    {
+        id: 1,
+        name: 'Dark Magician',
+        type: "Rock",
+        img: `${pathImages}magician.png`,
+        winfOf: [2],
+        loseOf: [0],
+    },
+    {
+        id: 0,
+        name: 'Exodia',
+        type: "Scissors",
+        img: `${pathImages}exodia.png`,
+        winfOf: [0],
+        loseOf: [1],
+    }
+]
 
 function init() {
 
