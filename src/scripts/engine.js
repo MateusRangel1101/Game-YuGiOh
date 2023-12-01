@@ -124,9 +124,11 @@ async function checkDuelResults(playerCardId, computerCardId) {
 
     if (playerCard.winfOf.includes((computerCardId))) {
         duelResults = 'Ganhou'
+        await playAudio('win')
         state.score.playerScore++
     } else if (playerCard.loseOf.includes((computerCardId))) {
         duelResults = 'Perdeu'
+        await playAudio('lose')
         state.score.computerScore++
     }
 
@@ -141,6 +143,20 @@ async function drawButton(text) {
     state.actions.button.innerText = text
     state.actions.button.style.display = 'block'
 
+}
+
+async function resetDuel() {
+    state.cardSprites.avatar.src = ''
+    state.actions.button.style.display = 'none'
+    state.fieldCards.player.style.display = 'none'
+    state.fieldCards.computer.style.display = 'none'
+
+    init()
+}
+
+async function playAudio(status) {
+    const audio = new Audio(`./src/assets/audios/${status}.wav`)
+    audio.play()
 }
 
 function init() {
