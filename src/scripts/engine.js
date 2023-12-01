@@ -73,7 +73,7 @@ function createCardImage(idCard, fieldSide) {
     cardImage.setAttribute('data-id', idCard)
     cardImage.classList.add('card')
 
-    if (fieldSide === playerSides.player1) {
+    if (fieldSide === state.playerSides.player1) {
         cardImage.addEventListener('click', () => {
             setCardField(cardImage.getAttribute('data-id'))
         })
@@ -118,9 +118,34 @@ async function removeAllCardsImage() {
     imgElements.forEach((img) => img.remove())
 }
 
+async function checkDuelResults(playerCardId, computerCardId) {
+    let duelResults = 'Empate'
+    let playerCard = cardData[playerCardId]
+
+    if (playerCard.winfOf.includes((computerCardId))) {
+        duelResults = 'Ganhou'
+        state.score.playerScore++
+    } else if (playerCard.loseOf.includes((computerCardId))) {
+        duelResults = 'Perdeu'
+        state.score.computerScore++
+    }
+
+    return duelResults
+}
+
+async function updateScore() {
+    state.score.scoreBox.innerText = `Win: ${state.score.playerScore} | Lose: ${state.score.computerScore}`
+}
+
+async function drawButton(text) {
+    state.actions.button.innerText = text
+    state.actions.button.style.display = 'block'
+
+}
+
 function init() {
-    drawCards(5, playerSides.player1)
-    drawCards(5, playerSides.computer)
+    drawCards(5, state.playerSides.player1)
+    drawCards(5, state.playerSides.computer)
 }
 
 init()
