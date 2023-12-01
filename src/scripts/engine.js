@@ -90,8 +90,19 @@ async function drawSelectedCard(index) {
 
 }
 
-setCardField(){
+async function setCardField(cardId) {
+    await removeAllCardsImage()
+    let computerCardId = await getRandomId()
+    state.fieldCards.player.style.display = 'block'
+    state.fieldCards.computer.style.display = 'block'
 
+    state.fieldCards.player.src = cardData[cardId].img
+    state.fieldCards.computer.src = cardData[computerCardId].img
+
+    let duelResults = await checkDuelResults(cardId, computerCardId)
+
+    await updateScore()
+    await drawButton(duelResults)
 }
 
 function init() {
