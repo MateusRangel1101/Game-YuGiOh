@@ -40,7 +40,7 @@ const cardData = [
         loseOf: [0],
     },
     {
-        id: 0,
+        id: 2,
         name: 'Exodia',
         type: "Scissors",
         img: `${pathImages}exodia.png`,
@@ -81,6 +81,17 @@ function createCardImage(idCard, fieldSide) {
     })
 
     return cardImage
+}
+
+async function drawSelectedCard(index) {
+    state.cardSprites.avatar.src = cardData[index].img
+    state.cardSprites.name.innerText = cardData[index].name
+    state.cardSprites.type.innerText = 'Attribute: ' + cardData[index].type
+
+}
+
+setCardField(){
+
 }
 
 function init() {
