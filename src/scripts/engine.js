@@ -99,6 +99,8 @@ async function setCardField(cardId) {
     state.fieldCards.player.style.display = 'block'
     state.fieldCards.computer.style.display = 'block'
 
+    await hiddenCArdDetails()
+
     state.fieldCards.player.src = cardData[cardId].img
     state.fieldCards.computer.src = cardData[computerCardId].img
 
@@ -159,7 +161,16 @@ async function playAudio(status) {
     audio.play()
 }
 
+async function hiddenCArdDetails() {
+    state.cardSprites.name.innerText = ''
+    state.cardSprites.type.innerText = ''
+    state.cardSprites.avatar.src = ''
+}
+
+
 function init() {
+    state.fieldCards.player.style.display = 'none'
+    state.fieldCards.computer.style.display = 'none'
     drawCards(5, state.playerSides.player1)
     drawCards(5, state.playerSides.computer)
 }
